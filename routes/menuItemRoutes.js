@@ -6,7 +6,7 @@ import {
   updateMenuItem,
   deleteMenuItem,
   updateMenuItemStock
-} from '../controllers/menuItemsController.js';
+} from '../controllers/menuItemControllers.js';
 
 const router = express.Router();
 
