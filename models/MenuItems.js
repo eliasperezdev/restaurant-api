@@ -21,6 +21,11 @@ const MenuItems = sequelize.define('MenuItems', {
   price: {
     type: DataTypes.DECIMAL,
   },
+  stock: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    defaultValue: 0,
+  },
 });
 
 export default MenuItems;
