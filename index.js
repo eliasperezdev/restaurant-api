@@ -1,18 +1,16 @@
 import express from 'express';
 import { syncModels } from './models/index.js';
-import pedidoRoutes from './routes/pedidoRoutes.js';
+import tablesRoutes from './routes/tableRoutes.js';
+import menuItemsRoutes from './routes/menuItemRoutes.js'; 
+import usersRoutes from './routes/userRoutes.js';
 
 const app = express();
 
 app.use(express.json());
 
-// Ruta de prueba - eliminar
-app.get('/', (req, res) => {
-  res.send('API del restaurante funcionando');
-});
-
-// Usar rutas
-app.use('/api', pedidoRoutes);
+app.use('/api/tables', tablesRoutes);
+app.use('/api/menu-items', menuItemsRoutes);
+app.use('/api/users', usersRoutes);
 
 
 // Sincronizar la base de datos y arrancar el servidor
