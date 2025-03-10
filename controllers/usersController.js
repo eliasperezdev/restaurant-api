@@ -28,7 +28,7 @@ export const getUserById = async (req, res) => {
 
 export const createUser = async (req, res) => {
   try {
-    const { nombre, email, password, rol } = req.body;
+    const { name, email, password, rol } = req.body;
 
     const existingUser = await Users.findOne({ where: { email } });
     if (existingUser) {
@@ -38,7 +38,7 @@ export const createUser = async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    const newUser = await Users.create({ nombre, email, password: hashedPassword, rol });
+    const newUser = await Users.create({ name, email, password: hashedPassword, rol });
     res.status(201).json(newUser);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -48,7 +48,7 @@ export const createUser = async (req, res) => {
 export const updateUser = async (req, res) => {
   try {
     const { id } = req.params;
-    const { nombre, email, password, rol } = req.body;
+    const { name, email, password, rol } = req.body;
 
     const user = await Users.findByPk(id);
     if (!user) {
@@ -68,7 +68,7 @@ export const updateUser = async (req, res) => {
       hashedPassword = await bcrypt.hash(password, salt);
     }
 
-    await user.update({ nombre, email, password: hashedPassword, rol });
+    await user.update({ name, email, password: hashedPassword, rol });
     res.status(200).json(user);
   } catch (error) {
     res.status(500).json({ error: error.message });
